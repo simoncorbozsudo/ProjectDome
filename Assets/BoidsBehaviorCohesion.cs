@@ -32,7 +32,7 @@ public class BoidsBehaviorCohesion : MonoBehaviour
        }
        if(found > 0){
            average = average / found;
-           boid.velocity += Vector3.Lerp(Vector3.zero, average, average.magnitude / radius);
+           boid.velocity += Vector3.Lerp(boid.transform.position, average, average.magnitude / radius);
        }
     }
 }
