@@ -92,7 +92,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 30
-  repulsionForce: 1000
+  repulsionForce: 30
 --- !u!114 &-6349900172860513364
 MonoBehaviour:
   m_ObjectHideFlags: 0
