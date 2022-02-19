@@ -9,6 +9,7 @@ public class BoidsBehaviorCohesion : MonoBehaviour
 {
     private Boids boid; 
     public float radius;
+    public float captainRatio = 10;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +25,8 @@ public class BoidsBehaviorCohesion : MonoBehaviour
        foreach(var boid in boids.Where(b => b != boid)){
            var diff = boid.transform.position - this.transform.position;
            if(diff.magnitude < radius){
-               average += diff;
+               
+               average += boid.isCaptain ? diff*captainRatio : diff;
                found +=1;
            }
        }

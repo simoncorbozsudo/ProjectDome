@@ -112,8 +112,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: {x: 0, y: 0, z: 0}
-  maxVelocity: 10
-  squad_member: {fileID: 0}
+  maxVelocity: 35
+  isCaptain: 0
 --- !u!114 &7069511957239948366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,6 +140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 35
+  captainRatio: 10
 --- !u!114 &-3575252319855564895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,4 +154,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 4
-  repulsionForce: 0.5
+  repulsionForce: 3

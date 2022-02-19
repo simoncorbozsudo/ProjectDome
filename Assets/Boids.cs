@@ -12,7 +12,8 @@ public class Boids : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(!isCaptain){
+        if (!isCaptain)
+        {
             velocity = this.transform.forward * maxVelocity;
         }
     }
@@ -20,10 +21,14 @@ public class Boids : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(velocity.magnitude > maxVelocity){
-            velocity = velocity.normalized * maxVelocity;
+        if (!isCaptain)
+        {
+            if (velocity.magnitude > maxVelocity)
+            {
+                velocity = velocity.normalized * maxVelocity;
+            }
+            this.transform.position += velocity * Time.deltaTime;
+            this.transform.rotation = Quaternion.LookRotation(velocity);
         }
-        this.transform.position += velocity * Time.deltaTime;
-        this.transform.rotation = Quaternion.LookRotation(velocity);
     }
 }
