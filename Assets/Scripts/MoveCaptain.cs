@@ -9,6 +9,7 @@ public class MoveCaptain : MonoBehaviour
     private float forwardAcceleration = 2.5f, strafeAcceleration = 2f, hoverAcceleration = 2f;
     public float lookRateSpeed = 90f;
     private Vector2 lookInput, screenCenter, mouseDistance;
+    public Rigidbody m_captainBody;
 
     private float rollInput;
     public float rollSpeed = 10f, rollAcceleration = 3.5f;
@@ -19,6 +20,7 @@ public class MoveCaptain : MonoBehaviour
         Debug.Log("StartedMovementObj");
         screenCenter.x = Screen.width * .5f;
         screenCenter.y = Screen.height * .5f;
+        //we know the captain body
     }
     void Update(){
         lookInput.x = Input.mousePosition.x;
@@ -30,15 +32,14 @@ public class MoveCaptain : MonoBehaviour
         mouseDistance = Vector2.ClampMagnitude(mouseDistance, 1f);
 
         rollInput = Mathf.Lerp(rollInput, Input.GetAxisRaw("Roll"), rollAcceleration = Time.deltaTime);
-        Debug.Log(rollInput);
 
-        transform.Rotate(-mouseDistance.y * lookRateSpeed * Time.deltaTime, mouseDistance.x * lookRateSpeed * Time.deltaTime, rollInput* rollSpeed, Space.Self);
+        m_captainBody.transform.Rotate(-mouseDistance.y * lookRateSpeed * Time.deltaTime, mouseDistance.x * lookRateSpeed * Time.deltaTime, rollInput* rollSpeed, Space.Self);
 
         activeForwardSpeed = Mathf.Lerp(activeForwardSpeed, forwardSpeed, forwardAcceleration*Time.deltaTime);
         activeStrafeSpeed = Mathf.Lerp(activeStrafeSpeed, Input.GetAxisRaw("Horizontal") * strafeSpeed, strafeAcceleration*Time.deltaTime);
         activeHoverSpeed = Mathf.Lerp(activeHoverSpeed, Input.GetAxisRaw("Hover") * hoverSpeed, hoverAcceleration*Time.deltaTime);
-        transform.position += transform.forward * activeForwardSpeed * Time.deltaTime;
-        transform.position += (transform.right * activeStrafeSpeed * Time.deltaTime) + (transform.up * activeHoverSpeed * Time.deltaTime);
+        m_captainBody.transform.position += transform.forward * activeForwardSpeed * Time.deltaTime;
+        m_captainBody.transform.position += (transform.right * activeStrafeSpeed * Time.deltaTime) + (transform.up * activeHoverSpeed * Time.deltaTime);
 
     }
 }
