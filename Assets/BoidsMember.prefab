@@ -113,7 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: {x: 0, y: 0, z: 0}
-  maxVelocity: 35
+  maxVelocity: 30
   isCaptain: 0
 --- !u!114 &7069511957239948366
 MonoBehaviour:
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 35
-  captainRatio: 10
+  captainRatio: 5
 --- !u!114 &-3575252319855564895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,8 +154,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5801062c88724c7909ffbc34a6e81258, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 4
-  repulsionForce: 1
+  radius: 10
+  repulsionForce: 10
 --- !u!114 &-1414981929546266780
 MonoBehaviour:
   m_ObjectHideFlags: 0

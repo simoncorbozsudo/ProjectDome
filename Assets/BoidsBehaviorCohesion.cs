@@ -24,9 +24,9 @@ public class BoidsBehaviorCohesion : MonoBehaviour
        var found = 0;
        foreach(var boid in boids.Where(b => b != boid)){
            var diff = boid.transform.position - this.transform.position;
-           if(diff.magnitude < radius){
+           if(diff.magnitude < radius && boid.isCaptain){
                
-               average += boid.isCaptain ? diff*captainRatio : Vector3.zero;
+               average += diff*captainRatio;
                found +=1;
            }
        }
