@@ -8,7 +8,6 @@ public class Dome
     public int nbBiomes  = 2;
     public const int maxNbExits  = 5;
     public GameObject DomeModel3D;
-    public BiomesConfig biomeConfig;
     public Mesh DomeMesh;
     private int nbExits;
     

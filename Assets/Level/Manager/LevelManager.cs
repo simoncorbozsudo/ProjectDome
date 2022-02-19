@@ -39,7 +39,7 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //first get the position
+        /*//first get the position
         Vector3 playerPos = Player.transform.position;
         //check each exit of the actual room
         if(!isAnExitDoorOpen){
@@ -77,11 +77,11 @@ public class LevelManager : MonoBehaviour
                 this.isAnExitDoorOpen = false;
                 Destroy(this.nextRoomPrefab);
             }
-        }
+        }*/
         
 
 
-        Vector3 dir = (playerPos - transform.position).normalized;
+        // Vector3 dir = (playerPos - transform.position).normalized;
          
             //check player pos in active room
         //if close to exit of active room 
