@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class DomeSpawner : MonoBehaviour
 {
-    public int numberOfNextDomes = 1;
+    public const int NUMBER_OF_NEXT_DOMES = 1;
 
-    public int maxNumberOfPreviousDomes = 1;
+    public const int MAX_NUMBER_OF_PREVIOUS_DOMES = 1;
 
     public GameObject domePrefab;
 
-    public GameObject currentDome;
+    private GameObject currentDome;
 
     private Queue<GameObject> domes;
 
@@ -23,23 +23,35 @@ public class DomeSpawner : MonoBehaviour
         domes.Enqueue(currentDome);
         lastDomeEnqueued = currentDome;
 
-        for (int i = 0; i < numberOfNextDomes; i++)
+        SpawnAndEnqueueInitialDome();
+
+        for (int i = 0; i < NUMBER_OF_NEXT_DOMES; i++)
         {
             SpawnAndEnqueueNextDome();
             lastDomeEnqueued.name = "Dome +" + (i + 1);
         }
     }
 
-    void Update()
+    public void OnNextDomeEntryPassed()
     {
-        if (Input.GetKeyUp(KeyCode.Space)) {
+        // Disable collider of last passed dome entry 
+        lastDomeEnqueued.transform.Find("Entry Tunnel").GetComponent<Collider>().enabled = false;
 
-            SpawnAndEnqueueNextDome();
+        SpawnAndEnqueueNextDome();
 
-            UpdateCurrentDome();
+        // Update current dome
+        currentDome = domes.ToArray()[GetCurrentDomeIndex()];
 
-            UpdateGameObjectNames();
-        }
+        UpdateGameObjectNames();
+    }
+
+    private void SpawnAndEnqueueInitialDome()
+    {
+        GameObject initialDome = Instantiate(domePrefab, Vector3.zero, Quaternion.identity);
+        initialDome.transform.Find("Entry Tunnel").GetComponent<Collider>().enabled = false;
+        initialDome.name = "Current Dome";
+        domes.Enqueue(initialDome);
+        lastDomeEnqueued = initialDome;
     }
 
     private void SpawnAndEnqueueNextDome()
@@ -75,26 +87,10 @@ public class DomeSpawner : MonoBehaviour
         }
 
         GameObject nextDome = Instantiate(domePrefab, nextDomeTransform.position, nextDomeTransform.rotation);
-        nextDome.transform.Find("Entry Door").gameObject.SetActive(false);
         domes.Enqueue(nextDome);
         lastDomeEnqueued = nextDome;
 
         doorToOpen.SetActive(false);
-    }
-
-    private void UpdateCurrentDome()
-    {
-        currentDome = domes.ToArray()[GetCurrentDomeIndex()];
-    }
-
-    private int GetMaxNumberOfDomes()
-    {
-        return numberOfNextDomes + maxNumberOfPreviousDomes + 1;
-    }
-
-    private int GetCurrentDomeIndex()
-    {
-        return domes.Count - numberOfNextDomes - 1;
     }
 
     private void UpdateGameObjectNames()
@@ -119,6 +115,16 @@ public class DomeSpawner : MonoBehaviour
 
             index++;
         }
+    }
+
+    private int GetMaxNumberOfDomes()
+    {
+        return NUMBER_OF_NEXT_DOMES + MAX_NUMBER_OF_PREVIOUS_DOMES + 1;
+    }
+
+    private int GetCurrentDomeIndex()
+    {
+        return domes.Count - NUMBER_OF_NEXT_DOMES - 1;
     }
 
 }
