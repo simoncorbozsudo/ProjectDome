@@ -154,4 +154,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 4
-  repulsionForce: 3
+  repulsionForce: 1

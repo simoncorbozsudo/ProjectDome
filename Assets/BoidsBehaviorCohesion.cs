@@ -26,7 +26,7 @@ public class BoidsBehaviorCohesion : MonoBehaviour
            var diff = boid.transform.position - this.transform.position;
            if(diff.magnitude < radius){
                
-               average += boid.isCaptain ? diff*captainRatio : diff;
+               average += boid.isCaptain ? diff*captainRatio : Vector3.zero;
                found +=1;
            }
        }
