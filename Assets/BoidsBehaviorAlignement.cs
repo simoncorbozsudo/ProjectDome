@@ -22,10 +22,13 @@ public class BoidsBehaviorAlignement : MonoBehaviour
        var average = Vector3.zero;
        var found = 0;
        foreach(var boid in boids.Where(b => b != boid)){
-           var diff = boid.transform.position - this.transform.position;
-           if(diff.magnitude < radius){
-               average += boid.velocity;
-               found +=1;
+           if(boid.isCaptain){
+
+            var diff = boid.transform.position - this.transform.position;
+            if(diff.magnitude < radius){
+                average += boid.velocity;
+                found +=1;
+            }
            }
        }
        if(found > 0){
