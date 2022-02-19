@@ -20,9 +20,30 @@ public class MoveCaptain : MonoBehaviour
         Debug.Log("StartedMovementObj");
         screenCenter.x = Screen.width * .5f;
         screenCenter.y = Screen.height * .5f;
+        m_captainBody.AddForce(Vector3.forward * 20f);
+
         //we know the captain body
     }
-    void Update(){
+    void FixedUpdate(){
+        // lookInput.x = Input.mousePosition.x;
+        // lookInput.y = Input.mousePosition.y;
+
+        // mouseDistance.x = (lookInput.x - screenCenter.x)/ screenCenter.x;
+        // mouseDistance.y = (lookInput.y - screenCenter.y)/ screenCenter.y;
+
+        // mouseDistance = Vector2.ClampMagnitude(mouseDistance, 1f);
+
+        // rollInput = Mathf.Lerp(rollInput, Input.GetAxisRaw("Roll"), rollAcceleration = Time.deltaTime);
+
+        // m_captainBody.transform.Rotate(-mouseDistance.y * lookRateSpeed * Time.deltaTime, mouseDistance.x * lookRateSpeed * Time.deltaTime, rollInput* rollSpeed, Space.Self);
+
+        // activeForwardSpeed = Mathf.Lerp(activeForwardSpeed, forwardSpeed, forwardAcceleration*Time.deltaTime);
+        // activeStrafeSpeed = Mathf.Lerp(activeStrafeSpeed, Input.GetAxisRaw("Horizontal") * strafeSpeed, strafeAcceleration*Time.deltaTime);
+        // activeHoverSpeed = Mathf.Lerp(activeHoverSpeed, Input.GetAxisRaw("Hover") * hoverSpeed, hoverAcceleration*Time.deltaTime);
+        
+        // m_captainBody.transform.position += transform.forward * activeForwardSpeed * Time.deltaTime;
+        // m_captainBody.transform.position += (transform.right * activeStrafeSpeed * Time.deltaTime) + (transform.up * activeHoverSpeed * Time.deltaTime);
+
         lookInput.x = Input.mousePosition.x;
         lookInput.y = Input.mousePosition.y;
 
@@ -38,8 +59,10 @@ public class MoveCaptain : MonoBehaviour
         activeForwardSpeed = Mathf.Lerp(activeForwardSpeed, forwardSpeed, forwardAcceleration*Time.deltaTime);
         activeStrafeSpeed = Mathf.Lerp(activeStrafeSpeed, Input.GetAxisRaw("Horizontal") * strafeSpeed, strafeAcceleration*Time.deltaTime);
         activeHoverSpeed = Mathf.Lerp(activeHoverSpeed, Input.GetAxisRaw("Hover") * hoverSpeed, hoverAcceleration*Time.deltaTime);
-        m_captainBody.transform.position += transform.forward * activeForwardSpeed * Time.deltaTime;
-        m_captainBody.transform.position += (transform.right * activeStrafeSpeed * Time.deltaTime) + (transform.up * activeHoverSpeed * Time.deltaTime);
+        
+        m_captainBody.AddForce( transform.forward * activeForwardSpeed, ForceMode.VelocityChange);
+        m_captainBody.AddForce( transform.right * activeStrafeSpeed + transform.up * activeHoverSpeed,ForceMode.VelocityChange);
+
 
     }
 }
