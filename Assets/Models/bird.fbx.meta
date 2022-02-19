@@ -2,7 +2,16 @@ fileFormatVersion: 2
 guid: 6fa6b1dfbfae44124823037c9c772237
 ModelImporter:
   serializedVersion: 20200
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      74: 5500899496715937054
+    second: Armature|Boids flying
+  - first:
+      74: -8178572819716076619
+    second: Armature|Boids idle
+  - first:
+      74: -6558276976783236384
+    second: Armature|Main Bird
   externalObjects: {}
   materials:
     materialImportMode: 2
