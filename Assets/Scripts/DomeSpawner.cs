@@ -34,6 +34,8 @@ public class DomeSpawner : MonoBehaviour
 
     public void OnNextDomeEntryPassed()
     {
+        Debug.Log("Door passed!");
+
         // Disable collider of last passed dome entry 
         lastDomeEnqueued.transform.Find("Entry Tunnel").GetComponent<Collider>().enabled = false;
 
