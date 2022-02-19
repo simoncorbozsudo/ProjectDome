@@ -163,8 +163,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2412065752671565302}
+  - component: {fileID: 8185186187379524707}
+  - component: {fileID: 7213094263260937907}
+  - component: {fileID: 8878984670323233761}
+  - component: {fileID: 8794930752996174022}
   m_Layer: 0
-  m_Name: Child Bird
+  m_Name: Bird
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -186,6 +190,62 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8185186187379524707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3040688038380302156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16cdbb6245eea7a71ba9da7073a534f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocity: {x: 0, y: 0, z: 0}
+  maxVelocity: 25
+  isCaptain: 0
+--- !u!114 &7213094263260937907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3040688038380302156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b68826abf6d8c88158b1538fa96d8ba3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 50
+--- !u!114 &8878984670323233761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3040688038380302156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a78f891e8a6644e3886a06f1b84b872, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 50
+  captainRatio: 2
+--- !u!114 &8794930752996174022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3040688038380302156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5801062c88724c7909ffbc34a6e81258, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 30
+  repulsionForce: 30
 --- !u!1 &3933032350129948654
 GameObject:
   m_ObjectHideFlags: 0
