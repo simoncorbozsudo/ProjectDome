@@ -20,7 +20,7 @@ public class MoveCaptain : MonoBehaviour
         Debug.Log("StartedMovementObj");
         screenCenter.x = Screen.width * .5f;
         screenCenter.y = Screen.height * .5f;
-        m_captainBody.AddForce(Vector3.forward * 20f);
+        m_captainBody.AddForce(transform.forward * 10f);
 
         //we know the captain body
     }
@@ -60,8 +60,8 @@ public class MoveCaptain : MonoBehaviour
         activeStrafeSpeed = Mathf.Lerp(activeStrafeSpeed, Input.GetAxisRaw("Horizontal") * strafeSpeed, strafeAcceleration*Time.deltaTime);
         activeHoverSpeed = Mathf.Lerp(activeHoverSpeed, Input.GetAxisRaw("Hover") * hoverSpeed, hoverAcceleration*Time.deltaTime);
         
-        m_captainBody.AddForce( transform.forward * activeForwardSpeed, ForceMode.VelocityChange);
-        m_captainBody.AddForce( transform.right * activeStrafeSpeed + transform.up * activeHoverSpeed,ForceMode.VelocityChange);
+        //m_captainBody.AddForce( transform.forward * activeForwardSpeed, ForceMode.VelocityChange);
+        //m_captainBody.AddForce( transform.right * activeStrafeSpeed + transform.up * activeHoverSpeed,ForceMode.VelocityChange);
 
 
     }
