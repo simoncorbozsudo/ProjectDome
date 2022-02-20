@@ -14,12 +14,14 @@ public class BirdController : MonoBehaviour
 
     private Rigidbody rb;
 
-    private KeyCode? lastKeyCode = null;
+    private AudioSource audiosource;
 
+    private KeyCode? lastKeyCode = null;
     private bool isDead = false;
 
     void Start()
     {
+        audiosource =GetComponent<AudioSource>(); 
         rb = GetComponent<Rigidbody>();
     }
 
@@ -103,7 +105,7 @@ public class BirdController : MonoBehaviour
         Vector3 dir = collision.contacts[0].point - transform.position;
         dir = -dir.normalized;
         rb.AddForce(dir * 30);
-
+        audiosource.Play();
         animator.SetBool("isDead", true);
     }
 }

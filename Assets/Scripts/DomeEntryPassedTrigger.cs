@@ -5,9 +5,11 @@ public class DomeEntryPassedTrigger : MonoBehaviour
     public Collider entryDoorCollider;
 
     private Collider tunnelCollider;
+    private AudioSource audio;
 
     private void Start()
     {
+        audio = GetComponent<AudioSource>();
         tunnelCollider = GetComponent<Collider>();
     }
 
@@ -15,6 +17,7 @@ public class DomeEntryPassedTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            audio.Play();
             GameObject.Find("Game Manager").GetComponent<DomeSpawner>().OnNextDomeEntryPassed();
         }
     }
