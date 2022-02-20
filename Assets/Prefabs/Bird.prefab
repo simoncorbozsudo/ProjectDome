@@ -365,7 +365,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4595301610513609024}
   m_LocalRotation: {x: 0.9999371, y: 0.0014216738, z: -0.0044724094, w: -0.010186288}
-  m_LocalPosition: {x: 0.0015766493, y: 0.0403489, z: 0.04045183}
+  m_LocalPosition: {x: 0, y: 0.0403489, z: 0.04045183}
   m_LocalScale: {x: 236.65543, y: 236.65544, z: 236.65543}
   m_Children:
   - {fileID: 2434611330312842405}
@@ -382,7 +382,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1877817022415153227}
   - component: {fileID: 4439882200464810476}
-  m_Layer: 0
+  - component: {fileID: 319277405439830852}
+  m_Layer: 7
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -472,6 +473,20 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.000008689647, y: 0.00021768501, z: -0.00003869459}
     m_Extent: {x: 0.0002572809, y: 0.00039766816, z: 0.00030016433}
   m_DirtyAABB: 0
+--- !u!136 &319277405439830852
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4616461107968151813}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.03
+  m_Height: 0.25
+  m_Direction: 2
+  m_Center: {x: 0.010600124, y: -0.0037353968, z: -0.03918148}
 --- !u!1 &4779408978382490373
 GameObject:
   m_ObjectHideFlags: 0
@@ -643,6 +658,7 @@ GameObject:
   - component: {fileID: 8155632169656577426}
   - component: {fileID: 6897816664525371948}
   - component: {fileID: 5921875208253641621}
+  - component: {fileID: 3804681694288561207}
   m_Layer: 0
   m_Name: Bird
   m_TagString: Untagged
@@ -770,6 +786,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3804681694288561207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5954046620904288558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0cd2d0c098ff41aa891ac85366effad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boidVicinityManager: {fileID: 0}
 --- !u!1 &7121367023760616483
 GameObject:
   m_ObjectHideFlags: 0

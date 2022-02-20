@@ -25,6 +25,7 @@ public class DomeEntryPassedTrigger : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         tunnelCollider.enabled = false;
+        Debug.Log(other.gameObject.name);
         entryDoorCollider.enabled = true;
     }
 }
