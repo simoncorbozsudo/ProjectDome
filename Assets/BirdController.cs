@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class BirdController : MonoBehaviour
 {
@@ -11,11 +10,16 @@ public class BirdController : MonoBehaviour
 
     private Rigidbody rb;
 
+    private Animator animator;
+
     private KeyCode? lastKeyCode = null;
+
+    private bool isDead = false;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        animator = transform.GetChild(0).gameObject.GetComponent<Animator>();
     }
 
     void FixedUpdate()
@@ -76,8 +80,11 @@ public class BirdController : MonoBehaviour
         }
 
         // Marche droit devant toi
-        rb.AddForce(transform.forward * forwardSpeed);
-        
+        if (!isDead)
+        {
+            rb.AddForce(transform.forward * forwardSpeed);
+        }
+
         // Mais vas pas trop vite fréro
         if (rb.velocity.magnitude > maxVelocity)
         {
@@ -87,16 +94,12 @@ public class BirdController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("COLLISION ENTER");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
+        isDead = true;
 
-    private Vector3 AngleLerp(Vector3 StartAngle, Vector3 FinishAngle, float t)
-    {
-        float xLerp = Mathf.LerpAngle(StartAngle.x, FinishAngle.x, t);
-        float yLerp = Mathf.LerpAngle(StartAngle.y, FinishAngle.y, t);
-        float zLerp = Mathf.LerpAngle(StartAngle.z, FinishAngle.z, t);
-        Vector3 Lerped = new Vector3(xLerp, yLerp, zLerp);
-        return Lerped;
+        Vector3 dir = collision.contacts[0].point - transform.position;
+        dir = -dir.normalized;
+        rb.AddForce(dir * 30);
+
+        animator.SetBool("isDead", true);
     }
 }

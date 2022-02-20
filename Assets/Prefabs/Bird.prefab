@@ -642,6 +642,7 @@ GameObject:
   - component: {fileID: 1726664600503614190}
   - component: {fileID: 8155632169656577426}
   - component: {fileID: 6897816664525371948}
+  - component: {fileID: 5921875208253641621}
   m_Layer: 0
   m_Name: Bird
   m_TagString: Untagged
@@ -719,8 +720,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5801062c88724c7909ffbc34a6e81258, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 50
-  repulsionForce: 1
+  radius: 15
+  repulsionForce: 4
 --- !u!114 &8155632169656577426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -750,6 +751,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
+--- !u!95 &5921875208253641621
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5954046620904288558}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fde1b7b65e1364f0fa9c3bae04e2d719, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7121367023760616483
 GameObject:
   m_ObjectHideFlags: 0

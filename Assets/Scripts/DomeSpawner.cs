@@ -36,9 +36,6 @@ public class DomeSpawner : MonoBehaviour
     {
         Debug.Log("Door passed!");
 
-        // Disable collider of last passed dome entry 
-        lastDomeEnqueued.transform.Find("Entry Tunnel").GetComponent<Collider>().enabled = false;
-
         SpawnAndEnqueueNextDome();
 
         // Update current dome
@@ -51,6 +48,7 @@ public class DomeSpawner : MonoBehaviour
     {
         GameObject initialDome = Instantiate(domePrefab, Vector3.zero, Quaternion.identity);
         initialDome.transform.Find("Entry Tunnel").GetComponent<Collider>().enabled = false;
+        initialDome.transform.Find("Entry Door").GetChild(0).GetComponent<Collider>().enabled = true;
         initialDome.name = "Current Dome";
         domes.Enqueue(initialDome);
         lastDomeEnqueued = initialDome;
