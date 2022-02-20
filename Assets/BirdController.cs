@@ -2,15 +2,17 @@ using UnityEngine;
 
 public class BirdController : MonoBehaviour
 {
-    public float rotationSpeed = 0.1f;
+    public float rotationSpeed = 2f;
 
-    public float forwardSpeed = 0.1f;
+    public float forwardSpeed = 10f;
 
-    public float maxVelocity = 1f;
+    public float maxVelocity = 1.5f;
+
+    public Transform cameraTransform;
+
+    public Animator animator;
 
     private Rigidbody rb;
-
-    private Animator animator;
 
     private KeyCode? lastKeyCode = null;
 
@@ -19,7 +21,6 @@ public class BirdController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        animator = transform.GetChild(0).gameObject.GetComponent<Animator>();
     }
 
     void FixedUpdate()
@@ -96,6 +97,9 @@ public class BirdController : MonoBehaviour
     {
         isDead = true;
 
+        cameraTransform.SetParent(null);
+
+        rb.velocity = Vector3.zero;
         Vector3 dir = collision.contacts[0].point - transform.position;
         dir = -dir.normalized;
         rb.AddForce(dir * 30);

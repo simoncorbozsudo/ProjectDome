@@ -10,6 +10,8 @@ public class DomeSpawner : MonoBehaviour
 
     public GameObject domePrefab;
 
+    public int numberOfObstacleConfigs = 3;
+
     private GameObject currentDome;
 
     private Queue<GameObject> domes;
@@ -47,6 +49,7 @@ public class DomeSpawner : MonoBehaviour
     private void SpawnAndEnqueueInitialDome()
     {
         GameObject initialDome = Instantiate(domePrefab, Vector3.zero, Quaternion.identity);
+        SpawnObstacleConfig(initialDome);
         initialDome.transform.Find("Entry Tunnel").GetComponent<Collider>().enabled = false;
         initialDome.transform.Find("Entry Door").GetChild(0).GetComponent<Collider>().enabled = true;
         initialDome.name = "Current Dome";
@@ -90,6 +93,7 @@ public class DomeSpawner : MonoBehaviour
         domes.Enqueue(nextDome);
         lastDomeEnqueued = nextDome;
 
+        SpawnObstacleConfig(nextDome);
         doorToOpen.SetActive(false);
     }
 
@@ -115,6 +119,12 @@ public class DomeSpawner : MonoBehaviour
 
             index++;
         }
+    }
+
+    private void SpawnObstacleConfig(GameObject dome)
+    {
+        int obstacleConfigIndex = Random.Range(0, numberOfObstacleConfigs);
+        dome.transform.Find("Obstacle Configs").GetChild(obstacleConfigIndex).gameObject.SetActive(true);
     }
 
     private int GetMaxNumberOfDomes()
