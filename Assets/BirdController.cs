@@ -5,6 +5,8 @@ public class BirdController : MonoBehaviour
     public float rotationSpeed = 0.1f;
 
     public float forwardSpeed = 0.1f;
+    private AudioSource audiosource;
+
 
     public float maxVelocity = 1f;
 
@@ -13,11 +15,11 @@ public class BirdController : MonoBehaviour
     private Animator animator;
 
     private KeyCode? lastKeyCode = null;
-
     private bool isDead = false;
 
     void Start()
     {
+        audiosource =GetComponent<AudioSource>(); 
         rb = GetComponent<Rigidbody>();
         animator = transform.GetChild(0).gameObject.GetComponent<Animator>();
     }
@@ -99,7 +101,7 @@ public class BirdController : MonoBehaviour
         Vector3 dir = collision.contacts[0].point - transform.position;
         dir = -dir.normalized;
         rb.AddForce(dir * 30);
-
+        audiosource.Play();
         animator.SetBool("isDead", true);
     }
 }
