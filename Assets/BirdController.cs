@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BirdController : MonoBehaviour
 {
@@ -20,59 +21,58 @@ public class BirdController : MonoBehaviour
     void FixedUpdate()
     {
         bool xAxisInputReceived = false;
-        if ((lastKeyCode == KeyCode.W || lastKeyCode == null) && Input.GetKey(KeyCode.W))
+        if (lastKeyCode != KeyCode.S && Input.GetKey(KeyCode.W))
         {
             lastKeyCode = KeyCode.W;
             xAxisInputReceived = true;
             transform.Rotate(-rotationSpeed, 0, 0);
         }
-        if ((lastKeyCode == KeyCode.S || lastKeyCode == null) && Input.GetKey(KeyCode.S))
+        if (lastKeyCode != KeyCode.W && Input.GetKey(KeyCode.S))
         {
             lastKeyCode = KeyCode.S;
             xAxisInputReceived = true;
             transform.Rotate(rotationSpeed, 0, 0);
         }
 
-        if (!xAxisInputReceived)
-        {
-            Vector3 targetRotation = transform.rotation.eulerAngles;
-            targetRotation.x = 0f;
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(targetRotation), 0.05f);
-        }
-
         bool yAxisInputReceived = false;
-        if ((lastKeyCode == KeyCode.D || lastKeyCode == null) && Input.GetKey(KeyCode.D))
+        if (lastKeyCode != KeyCode.A && Input.GetKey(KeyCode.D))
         {
             lastKeyCode = KeyCode.D;
             yAxisInputReceived = true;
-            transform.Rotate(0, rotationSpeed, 0, Space.World);
+            transform.Rotate(0, rotationSpeed, 0);
 
-            Vector3 targetRotation = transform.rotation.eulerAngles;
-            targetRotation.z = -90f;
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(targetRotation), 0.05f);
+            Vector3 slerpedRotation = Quaternion.Slerp(Quaternion.Euler(0, 0, transform.localEulerAngles.z), Quaternion.Euler(0, 0, -90f), 0.04f).eulerAngles;
+            slerpedRotation.x = transform.localEulerAngles.x;
+            slerpedRotation.y = transform.localEulerAngles.y;
+
+            transform.localEulerAngles = slerpedRotation;
         }
-        if ((lastKeyCode == KeyCode.A || lastKeyCode == null) && Input.GetKey(KeyCode.A))
+        if (lastKeyCode != KeyCode.D && Input.GetKey(KeyCode.A))
         {
             lastKeyCode = KeyCode.A;
             yAxisInputReceived = true;
-            transform.Rotate(0, -rotationSpeed, 0, Space.World);
+            transform.Rotate(0, -rotationSpeed, 0);
 
-            Vector3 targetRotation = transform.rotation.eulerAngles;
-            targetRotation.z = 90f;
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(targetRotation), 0.05f);
-        }
+            Vector3 slerpedRotation = Quaternion.Slerp(Quaternion.Euler(0, 0, transform.localEulerAngles.z), Quaternion.Euler(0, 0, 90f), 0.04f).eulerAngles;
+            slerpedRotation.x = transform.localEulerAngles.x;
+            slerpedRotation.y = transform.eulerAngles.y;
 
-        if (!yAxisInputReceived)
-        {
-            Vector3 targetRotation = transform.rotation.eulerAngles;
-            targetRotation.z = 0f;
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(targetRotation), 0.05f);
+            transform.localEulerAngles = slerpedRotation;
         }
 
 
         if (!xAxisInputReceived && !yAxisInputReceived)
         {
             lastKeyCode = null;
+
+            Vector3 targetRotationX = transform.rotation.eulerAngles;
+            targetRotationX.x = 0f;
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(targetRotationX), 0.04f);
+
+            Vector3 targetRotationZ = transform.rotation.eulerAngles;
+            targetRotationZ.z = 0f;
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(targetRotationZ), 0.04f);
+
         }
 
         // Marche droit devant toi
@@ -88,5 +88,15 @@ public class BirdController : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         Debug.Log("COLLISION ENTER");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    private Vector3 AngleLerp(Vector3 StartAngle, Vector3 FinishAngle, float t)
+    {
+        float xLerp = Mathf.LerpAngle(StartAngle.x, FinishAngle.x, t);
+        float yLerp = Mathf.LerpAngle(StartAngle.y, FinishAngle.y, t);
+        float zLerp = Mathf.LerpAngle(StartAngle.z, FinishAngle.z, t);
+        Vector3 Lerped = new Vector3(xLerp, yLerp, zLerp);
+        return Lerped;
     }
 }
