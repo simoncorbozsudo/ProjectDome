@@ -382,7 +382,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1877817022415153227}
   - component: {fileID: 4439882200464810476}
-  m_Layer: 0
+  - component: {fileID: 2352288434784777087}
+  m_Layer: 7
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -397,7 +398,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4616461107968151813}
   m_LocalRotation: {x: -0.00000015400656, y: 0.00000005651459, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.0015783954, y: 0.040661976, z: 0.014952325}
+  m_LocalPosition: {x: 0.0016, y: 0.0407, z: -0.0062}
   m_LocalScale: {x: 0.667979, y: 0.6679787, z: 0.6679791}
   m_Children: []
   m_Father: {fileID: 6479225723380640660}
@@ -472,6 +473,20 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.000008689647, y: 0.00021768501, z: -0.00003869459}
     m_Extent: {x: 0.0002572809, y: 0.00039766816, z: 0.00030016433}
   m_DirtyAABB: 0
+--- !u!136 &2352288434784777087
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4616461107968151813}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  m_Radius: 0.03
+  m_Height: 0.25
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4779408978382490373
 GameObject:
   m_ObjectHideFlags: 0
@@ -693,7 +708,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b68826abf6d8c88158b1538fa96d8ba3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 5
+  radius: 15
 --- !u!114 &1734184223582821149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -720,8 +735,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5801062c88724c7909ffbc34a6e81258, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 15
-  repulsionForce: 4
+  radius: 5
+  repulsionForce: 2
 --- !u!114 &8155632169656577426
 MonoBehaviour:
   m_ObjectHideFlags: 0
