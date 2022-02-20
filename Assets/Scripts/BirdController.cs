@@ -32,13 +32,13 @@ public class BirdController : MonoBehaviour
         {
             lastKeyCode = KeyCode.W;
             xAxisInputReceived = true;
-            transform.Rotate(-rotationSpeed, 0, 0);
+            transform.Rotate(rotationSpeed, 0, 0);
         }
         if (lastKeyCode != KeyCode.W && Input.GetKey(KeyCode.S))
         {
             lastKeyCode = KeyCode.S;
             xAxisInputReceived = true;
-            transform.Rotate(rotationSpeed, 0, 0);
+            transform.Rotate(-rotationSpeed, 0, 0);
         }
 
         bool yAxisInputReceived = false;
